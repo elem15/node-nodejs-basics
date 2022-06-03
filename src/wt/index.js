@@ -4,7 +4,7 @@ import { Worker } from 'worker_threads';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const pathToWorker = path.join(__dirname, 'worker.js');
+const pathToWorker = path.join(__dirname, 'worker2.js');
 
 const num = argv[2] ?? 7;
 
