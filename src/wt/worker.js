@@ -12,14 +12,25 @@ export const nthFibonacci = (n) => n < 2 ? n : nthFibonacci(n - 1) + nthFibonacc
 
 export const sendResult = () => {
   if (isMainThread) {
-    const worker = new Worker(pathToWorker, { workerData: String(nthFibonacci)});
-    worker.postMessage(num); 
-    worker.on('message', msg => console.log('Worker send message:', msg));    
+    return new Promise((resolve, reject) => {
+      const worker = new Worker(pathToWorker, {
+        workerData: String(nthFibonacci)
+      });
+      worker.postMessage(num);
+      worker.on('message', msg => console.log('Worker send message:', msg));
+      worker.on('message', resolve);
+      worker.on('error', reject);
+      worker.on('exit', (code) => {
+        if (code !== 0)
+          reject(new Error(`Worker stopped with exit code ${code}`));
+      });
+    });
   } else {
     parentPort.once('message', (message = 7) => {
-      const result = (eval(workerData))(message);  
+      const result = eval(workerData)(message);
       parentPort.postMessage(result);
-    });
+    })
   }
-}
+};
+
 sendResult();
