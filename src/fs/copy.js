@@ -2,7 +2,6 @@ import path from 'path';
 import { copyFile, readdir, mkdir} from 'fs/promises';
 import { fileURLToPath } from 'node:url';
 
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const src = path.join(__dirname, 'files');
 const destination = path.join(__dirname, 'files_copy');
