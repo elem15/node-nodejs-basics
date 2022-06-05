@@ -5,12 +5,16 @@ const args = process.argv.slice(2);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const child = fork(path.join(__dirname, 'files', 'script.js'), args);
+export const spawnChildProcess = async (args) => {
+    const child = fork(path.join(__dirname, 'files', 'script.js'), args);
 
-// child.on('message', (msg) => {
-//     process.stdout.write(`Message from child process: ${msg.toString()}\n`)
-// })
+    // child.on('message', (msg) => {
+    //     process.stdout.write(`Message from child process: ${msg.toString()}\n`)
+    // })
 
-child.on("close", (code) => {
-  console.log("child process exited with code " + code);
-});
+    child.on("close", (code) => {
+        console.log("child process exited with code " + code);
+    });
+};
+
+spawnChildProcess(args);
