@@ -25,7 +25,6 @@ if (random > 0.5) {
     unknownObject = b;
 }
 
-console.log(unknownObject);
 console.log(`Release ${release()}`);
 console.log(`Version ${version()}`);
 console.log(`Path segment separator is "${path.sep}"`);
