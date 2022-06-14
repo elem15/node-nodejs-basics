@@ -8,9 +8,10 @@ const pathToFile = path.join(__dirname, 'files', 'fileToRead.txt')
 
 export const read = async () => {
     const stream = fs.createReadStream(pathToFile);
-    stream.on('data', (chunk) => {
-        process.stdout.write(chunk);
-    })
+    // stream.on('data', (chunk) => {
+    //     process.stdout.write(chunk);
+    // })
+    stream.pipe(process.stdout)
 };
 
 read();

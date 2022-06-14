@@ -8,7 +8,7 @@ const src = path.join(__dirname, 'files', 'wrongFilename.txt');
 const destination = path.join(__dirname, 'files', 'properFilename.md');
 const fileError = new Error('FS operation failed');
 
-export const rename = async () => {
+export const rename = async () => {   
     try {
         try {
             await access(destination);

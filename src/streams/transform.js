@@ -1,3 +1,4 @@
+import { pipeline } from 'stream';
 import { Transform } from 'stream';
 import { stdin, stdout } from 'process';
 
@@ -13,7 +14,13 @@ const myTransform = new Transform({
 
 export const transform = async () => {
     stdout.write(invite);
-    stdin.pipe(myTransform).pipe(stdout);
+    pipeline(
+        stdin,
+        myTransform,
+        stdout,
+        (err) => console.error(err)
+    )
+    // stdin.pipe(myTransform).pipe(stdout);
 };
 
 transform();

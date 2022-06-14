@@ -14,4 +14,4 @@ export const calculateHash = async () => {
     return hash;
 };
 
-console.log(await calculateHash());
+console.log(await calculateHash()); 
